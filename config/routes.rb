@@ -15,3 +15,5 @@ end
   #<%= stylesheet_link_tag    "shopping_cart/application", media: "all" %>
   #<%= javascript_include_tag "shopping_cart/application" %>
   #<%= csrf_meta_tags %>
+#http://localhost:3000/shopping_cart/view_orders
+# config.router_name = :shopping_cart

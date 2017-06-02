@@ -1,6 +1,6 @@
 module ShoppingCart
   class Order < ApplicationRecord
-	  include AASM
+	  #include AASM
     attr_accessor :active_admin_requested_event
 
     has_many :line_items, dependent: :destroy
@@ -15,24 +15,24 @@ module ShoppingCart
     scope :sort_order_all, ->(current_user, params) { order(id: :desc).where(user_id: current_user.id).where(state: params[:sort_order]) }
     scope :sort_order, ->(current_user) { order(id: :desc).all.where(user_id: current_user.id) }
 
-    aasm column: 'state' do
-      state :in_queued, initial: true
-      state :in_delivering
-      state :delivering
-      state :canceling
+    #aasm column: 'state' do
+    #  state :in_queued, initial: true
+    #  state :in_delivering
+    #  state :delivering
+    #  state :canceling
 
-      event :in_delivery do
-        transitions from: :in_queued, to: :in_delivering
-      end
+    #  event :in_delivery do
+    #    transitions from: :in_queued, to: :in_delivering
+    #  end
 
-      event :delivery do
-        transitions from: :in_delivering, to: :delivering
-      end
+    #  event :delivery do
+    #    transitions from: :in_delivering, to: :delivering
+    #  end
 
-      event :cancel do
-        transitions from: %i(in_queued in_delivering delivering), to: :canceling
-      end
-    end
+    #  event :cancel do
+    #    transitions from: %i(in_queued in_delivering delivering), to: :canceling
+    #  end
+    #end
 
     def add_line_items_from_cart(cart)
       line_items = cart.line_items.map(&:item)

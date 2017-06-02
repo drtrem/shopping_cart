@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'aasm'
   s.add_dependency 'cancancan'
   s.add_dependency 'bootstrap-sass'
+  s.add_dependency 'devise'
 
   s.add_development_dependency 'pg'
   s.add_development_dependency 'rspec-rails'

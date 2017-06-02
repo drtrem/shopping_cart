@@ -6,10 +6,10 @@ module ShoppingCart
     load_and_authorize_resource
 
     def index
-      if params[:sort_order] && params[:sort_order] != 'All'
-        @order = ViewOrdersDecorator.decorate_collection(Order.sort_order_all(current_user, params))
+      @order = if params[:sort_order] && params[:sort_order] != 'All'
+        Order.sort_order_all(current_user, params)
       else
-        @order = ViewOrdersDecorator.decorate_collection(Order.sort_order(current_user))
+        Order.sort_order(current_user)
       end
     end
   end
